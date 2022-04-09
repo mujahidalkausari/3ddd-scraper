@@ -91,13 +91,13 @@ for file in os.listdir(path):
                             for file in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'):
                                 name_lower = str(file).lower()
                                 if "max" in name_lower:
-                                    if "calla" in name_lower:
+                                    if "corona" in name_lower:
                                         old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
                                         new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (corona).max'
                                         os.rename(old, new)
-                                    elif "vary" in name_lower:
+                                    elif "vray" in name_lower:
                                         old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
-                                        new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (vary).max'
+                                        new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (vray).max'
                                         os.rename(old, new)
                                     else:
                                         old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
@@ -107,11 +107,11 @@ for file in os.listdir(path):
                             print(f"9. All .max files renamed in (Maps - {model_name}).")
                             shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
-                            print(f"11. Task completed!.")
+                            print(f"11. Task completed!\n\n")
                                 
                         else:
                             print(f"6. (Maps - {model_name}) already exists. Unzipping, file renaming and copying .MAX already done!")
-                            print(f"7. Task completed!")      
+                            print(f"7. Task completed!\n\n")      
                     else:
                         print("---> Sub_Cat directory not found!\n5. Creating Sub category...")
                         os.makedirs(f'{output_path}{cat}/{sub_cat}')
@@ -152,13 +152,13 @@ for file in os.listdir(path):
                             for file in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'):
                                 name_lower = str(file).lower()
                                 if "max" in name_lower:
-                                    if "calla" in name_lower:
+                                    if "corona" in name_lower:
                                         old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
                                         new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (corona).max'
                                         os.rename(old, new)
-                                    elif "vary" in name_lower:
+                                    elif "vray" in name_lower:
                                         old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
-                                        new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (vary).max'
+                                        new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (vray).max'
                                         os.rename(old, new)
                                     else:
                                         old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
@@ -168,10 +168,10 @@ for file in os.listdir(path):
                             print(f"9. All .max files renamed in (Maps - {model_name}).")
                             shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
-                            print(f"11. Task completed!.")
+                            print(f"11. Task completed!\n\n")
                         else:
                             print(f"6. (Maps - {model_name}) already exists. Unzipping, file renaming and copying .MAX already done!")
-                            print(f"7. Task completed!") 
+                            print(f"7. Task completed!\n\n") 
                             
                 else:
                     print("---> Cat directory not found!\n4. Creating Cat directory...")
@@ -217,13 +217,13 @@ for file in os.listdir(path):
                         for file in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'):
                             name_lower = str(file).lower()
                             if "max" in name_lower:
-                                if "calla" in name_lower:
+                                if "corona" in name_lower:
                                     old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
                                     new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (corona).max'
                                     os.rename(old, new)
-                                elif "vary" in name_lower:
+                                elif "vray" in name_lower:
                                     old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
-                                    new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (vary).max'
+                                    new = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{model_name} (vray).max'
                                     os.rename(old, new)
                                 else:
                                     old = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/{file}'
@@ -233,10 +233,10 @@ for file in os.listdir(path):
                         print(f"9. All .max files renamed in (Maps - {model_name}).")
                         shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                         print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
-                        print(f"11. Task completed!.")
+                        print(f"11. Task completed!\n\n")
                     else:
                         print(f"6. (Maps - {model_name}) already exists. Unzipping, file renaming and copying .MAX already done!")
-                        print(f"7. Task completed!") 
+                        print(f"7. Task completed!\n\n") 
 
         else:
             print(f"3. Image hash ({name}) not found in database.\n\n")
