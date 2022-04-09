@@ -96,45 +96,52 @@ while page <= 2:
                     tags_str = tags_str + str (tag_text.get_text())
                 num_tags = num_tags - 1
             
+            try:
+                sql = "INSERT INTO model (name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
+                val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
+                mycursor.execute(sql, val)
 
-            sql = "INSERT INTO model (name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
-            val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
-            mycursor.execute(sql, val)
+                mydb.commit()
 
-            mydb.commit()
-
-            print(mycursor.rowcount, "record inserted.")
+                print(mycursor.rowcount, "record inserted.")
             
-            row.append(str(model_cat))
-            row.append(str(model_sub_cat))
-            row.append(str(model_name))
-            row.append(str(img_hash))
-            row.append(str(tags_str))
-            
-            data.append(row)
-            tags_str = ""
-            row = []
+                row.append(str(model_cat))
+                row.append(str(model_sub_cat))
+                row.append(str(model_name))
+                row.append(str(img_hash))
+                row.append(str(tags_str))
+                
+                data.append(row)
+                tags_str = ""
+                row = []
+                
+            except:
+                print("A record already exists, processing next data item...")
+                pass
 
    
         except:
-            
-            sql = "INSERT INTO model (model_name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
-            val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
-            mycursor.execute(sql, val)
+            try:
+                sql = "INSERT INTO model (model_name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
+                val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
+                mycursor.execute(sql, val)
 
-            mydb.commit()
+                mydb.commit()
 
-            print(mycursor.rowcount, "record inserted.")
+                print(mycursor.rowcount, "record inserted.")
 
-            row.append(str(model_cat))
-            row.append(str(model_sub_cat))
-            row.append(str(model_name))
-            row.append(str(img_hash))
-            row.append(str(tags_str))
-            
-            data.append(row)
-            tags_str = ""
-            row = []
+                row.append(str(model_cat))
+                row.append(str(model_sub_cat))
+                row.append(str(model_name))
+                row.append(str(img_hash))
+                row.append(str(tags_str))
+                
+                data.append(row)
+                tags_str = ""
+                row = []
+            except:
+                print("A record already exists, processing next data item...")
+                pass
 
             
     page = page + 1
@@ -165,5 +172,3 @@ outputfile.close()
 
 print("3ddd CSV generated succesfully!")
 '''
-
-
