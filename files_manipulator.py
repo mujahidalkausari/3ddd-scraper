@@ -58,7 +58,7 @@ for file in os.listdir(path):
                             os.makedirs(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                             print(f'7. Unzipping file into (Maps - {model_name} > temp)...')
-                            with zipfile.ZipFile(f'E:/python_projects/lambda_venv/3ddd/raw_dataset/{name}.zip', 'r') as zip_ref:
+                            with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
                                 zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
 
                             dst_dir = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
@@ -121,7 +121,7 @@ for file in os.listdir(path):
                             os.makedirs(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                             print(f'6. Unzipping file into (Maps - {model_name} > temp)...')
-                            with zipfile.ZipFile(f'E:/python_projects/lambda_venv/3ddd/raw_dataset/{name}.zip', 'r') as zip_ref:
+                            with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
                                 zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
 
                             dst_dir = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
@@ -185,7 +185,7 @@ for file in os.listdir(path):
                         os.makedirs(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                     
                         print('6. Unzipping file into (Maps - {model_name} > temp)...')
-                        with zipfile.ZipFile(f'E:/python_projects/lambda_venv/3ddd/raw_dataset/{name}.zip', 'r') as zip_ref:
+                        with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
                             zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
 
                         dst_dir = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
@@ -240,4 +240,3 @@ for file in os.listdir(path):
 
         else:
             print(f"3. Image hash ({name}) not found in database.\n\n")
-
