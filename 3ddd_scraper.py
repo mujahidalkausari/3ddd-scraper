@@ -59,7 +59,7 @@ tags_str = ""
 
 while page <= 17:
 
-    print(f"Scraping Page#{page}...")
+    print(f"---> Scraping Page#{page}...")
 
     json_data = {
         'page': page,
