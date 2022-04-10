@@ -57,14 +57,14 @@ data = []
 row = []
 tags_str = ""
 
-while page <= 2:
+while page <= 17:
 
     print(f"Scraping Page#{page}...")
 
     json_data = {
         'page': page,
         'categories': [
-        '3d_panel',
+        'drugie_restoran',
         ],
     }
     
