@@ -23,9 +23,9 @@ except:
 cookies = {
     'PHPSESSID': '9b8e549bd08820c2151b9a44e2d54db0',
     'CookieConsent_ru': '1%7C1677524156',
-    '_gid': 'GA1.2.110129187.1648826683',
     'frontsrv': 'k230',
-    '_ga_6V3ZTRGYKW': 'GS1.1.1649012551.13.1.1649014966.0',
+    '_gid': 'GA1.2.111200018.1649489269',
+    '_ga_6V3ZTRGYKW': 'GS1.1.1649563599.24.1.1649563780.0',
     '_ga': 'GA1.2.1601563660.1648579996',
     '_gat': '1',
 }
@@ -37,19 +37,18 @@ headers = {
     # Already added when you pass json=
     # 'Content-Type': 'application/json',
     # Requests sorts cookies= alphabetically
-    # 'Cookie': 'PHPSESSID=9b8e549bd08820c2151b9a44e2d54db0; CookieConsent_ru=1%7C1677524156; _gid=GA1.2.110129187.1648826683; frontsrv=k230; _ga_6V3ZTRGYKW=GS1.1.1649012551.13.1.1649014966.0; _ga=GA1.2.1601563660.1648579996; _gat=1',
+    # 'Cookie': 'PHPSESSID=9b8e549bd08820c2151b9a44e2d54db0; CookieConsent_ru=1%7C1677524156; frontsrv=k230; _gid=GA1.2.111200018.1649489269; _ga_6V3ZTRGYKW=GS1.1.1649563599.24.1.1649563780.0; _ga=GA1.2.1601563660.1648579996; _gat=1',
     'DNT': '1',
     'Origin': 'https://3ddd.ru',
-    'Referer': 'https://3ddd.ru/3dmodels',
+    'Referer': 'https://3ddd.ru/3dmodels?cat=dekor&subcat=3d_panel&page=1',
     'Sec-Fetch-Dest': 'empty',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Site': 'same-origin',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36',
     'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="100", "Google Chrome";v="100"',
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '"Windows"',
 }
-
 
 print("Scraper started...\n")
 
@@ -96,54 +95,45 @@ while page <= 2:
                     tags_str = tags_str + str (tag_text.get_text())
                 num_tags = num_tags - 1
             
-            try:
-                sql = "INSERT INTO model (name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
-                val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
-                mycursor.execute(sql, val)
 
-                mydb.commit()
+            sql = "INSERT INTO model (name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
+            val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
+            mycursor.execute(sql, val)
 
-                print(mycursor.rowcount, "record inserted.")
+            mydb.commit()
+
+            print(mycursor.rowcount, "record inserted.")
             
-                row.append(str(model_cat))
-                row.append(str(model_sub_cat))
-                row.append(str(model_name))
-                row.append(str(img_hash))
-                row.append(str(tags_str))
+            row.append(str(model_cat))
+            row.append(str(model_sub_cat))
+            row.append(str(model_name))
+            row.append(str(img_hash))
+            row.append(str(tags_str))
                 
-                data.append(row)
-                tags_str = ""
-                row = []
+            data.append(row)
+            tags_str = ""
+            row = []
                 
-            except:
-                print("A record already exists, processing next data item...")
-                pass
-
-   
         except:
-            try:
-                sql = "INSERT INTO model (model_name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
-                val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
-                mycursor.execute(sql, val)
 
-                mydb.commit()
+            sql = "INSERT INTO model (model_name, img_hash, tags, sub_cat_name, cat) VALUES (%s, %s ,%s ,%s ,%s)"
+            val = (model_name, img_hash, tags_str, model_sub_cat, model_cat)
+            mycursor.execute(sql, val)
 
-                print(mycursor.rowcount, "record inserted.")
+            mydb.commit()
 
-                row.append(str(model_cat))
-                row.append(str(model_sub_cat))
-                row.append(str(model_name))
-                row.append(str(img_hash))
-                row.append(str(tags_str))
+            print(mycursor.rowcount, "record inserted.")
+
+            row.append(str(model_cat))
+            row.append(str(model_sub_cat))
+            row.append(str(model_name))
+            row.append(str(img_hash))
+            row.append(str(tags_str))
                 
-                data.append(row)
-                tags_str = ""
-                row = []
-            except:
-                print("A record already exists, processing next data item...")
-                pass
-
-            
+            data.append(row)
+            tags_str = ""
+            row = []
+           
     page = page + 1
 
 
