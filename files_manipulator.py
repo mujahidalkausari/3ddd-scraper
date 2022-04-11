@@ -29,7 +29,7 @@ output_path = "E:/python_projects/lambda_venv/3ddd/output_dataset/"
 for file in os.listdir(path):
     extension = (file.split("."))[2]
     
-    if extension == "zip":
+    if extension == "zip" or extension == "rar":
         name = (str(file)).split(".")[0]+"."+(str(file)).split(".")[1]
         
         print(f"1. Fetching img_hash ({name}) from directory...\n2. Searching the img_hash in database...")
@@ -354,3 +354,4 @@ for file in os.listdir(path):
 
         else:
             print(f"3. Image hash ({name}) not found in database.\n\n")
+
