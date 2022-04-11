@@ -119,7 +119,7 @@ for file in os.listdir(path):
                             for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                                 if maxfile:
                                     shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                            print(f"8. All .max files copied to (sub_cat).")
+                            print(f"8. All .max files copied to ({sub_cat}).")
                             
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
@@ -231,7 +231,7 @@ for file in os.listdir(path):
                             for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                                 if maxfile:
                                     shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                            print(f"8. All .max files copied to (sub_cat).")
+                            print(f"8. All .max files copied to ({sub_cat}).")
                             
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
@@ -345,7 +345,7 @@ for file in os.listdir(path):
                         for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                             if maxfile:
                                 shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                        print(f"8. All .max files copied to (sub_cat).")
+                        print(f"8. All .max files copied to ({sub_cat}).")
                             
                         folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                         for filename in os.listdir(folder):
