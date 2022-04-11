@@ -5,6 +5,7 @@ from unrar import rarfile
 import glob
 import shutil
 import fnmatch
+import re
 
 
 ### Connect to database--- ###
@@ -46,7 +47,8 @@ for file in os.listdir(path):
                 
                 cat = x[4]
                 sub_cat = x[3]
-                model_name = x[0].replace("/","_").replace("\\","_")
+                model_name = str(x[0].replace("/","_").replace("\\","_"))
+                model_name = re.sub('[^a-zA-Z0-9\.]', '_', model_name)
 
                 if os.path.isdir(f'{output_path}{cat}'):
                     print(f"4. Category ({cat}) exists...")
