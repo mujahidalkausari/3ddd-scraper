@@ -46,7 +46,7 @@ for file in os.listdir(path):
                 
                 cat = x[4]
                 sub_cat = x[3]
-                model_name = x[0]
+                model_name = x[0].replace("/","_").replace("\\","_")
 
                 if os.path.isdir(f'{output_path}{cat}'):
                     print(f"4. Category ({cat}) exists...")
