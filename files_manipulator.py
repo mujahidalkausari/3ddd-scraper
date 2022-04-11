@@ -6,6 +6,7 @@ import glob
 import shutil
 import fnmatch
 import re
+import stat
 
 
 ### Connect to database--- ###
@@ -123,6 +124,7 @@ for file in os.listdir(path):
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
                                 file_path = os.path.join(folder, filename)
+                                os.chmod(file_path, stat.S_IWRITE)
                                 try:
                                     if "max" in str(filename):
                                         if os.path.isfile(file_path) or os.path.islink(file_path):
@@ -142,7 +144,18 @@ for file in os.listdir(path):
                                     img_files.append(os.path.join(root, image))
                             for img_file in img_files:
                                 shutil.copy(img_file, maps_dir)
-      
+    
+                            
+                            for filename in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
+                                file_path = os.path.join(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp', filename)
+                                os.chmod(file_path, stat.S_IWRITE)
+                                try:
+                                    if os.path.isfile(file_path) or os.path.islink(file_path):
+                                        os.unlink(file_path)
+                                    elif os.path.isdir(file_path):
+                                        shutil.rmtree(file_path)
+                                except Exception as e:
+                                    print('Failed to delete %s. Reason: %s' % (file_path, e))
                             shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                             print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
@@ -223,6 +236,7 @@ for file in os.listdir(path):
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
                                 file_path = os.path.join(folder, filename)
+                                os.chmod(file_path, stat.S_IWRITE)
                                 try:
                                     if "max" in str(filename):
                                         if os.path.isfile(file_path) or os.path.islink(file_path):
@@ -243,6 +257,16 @@ for file in os.listdir(path):
                             for img_file in img_files:
                                 shutil.copy(img_file, maps_dir)
       
+                            for filename in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
+                                file_path = os.path.join(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp', filename)
+                                os.chmod(file_path, stat.S_IWRITE)
+                                try:
+                                    if os.path.isfile(file_path) or os.path.islink(file_path):
+                                        os.unlink(file_path)
+                                    elif os.path.isdir(file_path):
+                                        shutil.rmtree(file_path)
+                                except Exception as e:
+                                    print('Failed to delete %s. Reason: %s' % (file_path, e))
                             shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                             print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
@@ -326,6 +350,7 @@ for file in os.listdir(path):
                         folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                         for filename in os.listdir(folder):
                             file_path = os.path.join(folder, filename)
+                            os.chmod(file_path, stat.S_IWRITE)
                             try:
                                 if "max" in str(filename):
                                     if os.path.isfile(file_path) or os.path.islink(file_path):
@@ -346,6 +371,16 @@ for file in os.listdir(path):
                         for img_file in img_files:
                             shutil.copy(img_file, maps_dir)
       
+                        for filename in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
+                            file_path = os.path.join(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp', filename)
+                            os.chmod(file_path, stat.S_IWRITE)
+                            try:
+                                if os.path.isfile(file_path) or os.path.islink(file_path):
+                                    os.unlink(file_path)
+                                elif os.path.isdir(file_path):
+                                    shutil.rmtree(file_path)
+                            except Exception as e:
+                                print('Failed to delete %s. Reason: %s' % (file_path, e))
                         shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                         print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
