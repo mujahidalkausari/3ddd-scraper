@@ -116,7 +116,7 @@ for file in os.listdir(path):
                             for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                                 if maxfile:
                                     shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                            print(f"8. All .max files copied to ({sub_cat}).")
+                            print(f"8. All .max files copied to (sub_cat).")
                             
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
@@ -151,7 +151,7 @@ for file in os.listdir(path):
                             print(f"7. Task completed!\n\n")      
                     else:
                         print("---> Sub_Cat directory not found!\n5. Creating Sub category...")
-                        os.makedirs(f'{output_path}{cat}/{sub_cat}')
+                        os.makedirs(f'{output_path}/{cat}/{sub_cat}')
 
                         if os.path.isdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}') == False:
                             print(f"---> Maps - {model_name} directory not found!\n4. Creating directory...")
@@ -254,7 +254,7 @@ for file in os.listdir(path):
                     os.makedirs(f'{output_path}{cat}')
                     
                     print("5. Creating Sub category...")
-                    os.makedirs(f'{output_path}{cat}/{sub_cat}')
+                    os.makedirs(f'{output_path}/{cat}/{sub_cat}')
                     
                     if os.path.isdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}') == False:
                         print(f"---> Maps - {model_name} directory not found!\n4. Creating directory...")
