@@ -1,6 +1,7 @@
 import os
 import mysql.connector
 import zipfile
+from unrar import rarfile
 import glob
 import shutil
 import fnmatch
@@ -22,8 +23,8 @@ except:
     exit()
 ### Connect to database--- ###
                                     
-path = "E:/python_projects/lambda_venv/3ddd/raw_dataset"
-output_path = "E:/python_projects/lambda_venv/3ddd/new_dataset/"
+path = "E:/python_projects/lambda_venv/3ddd/input_dataset"
+output_path = "E:/python_projects/lambda_venv/3ddd/output_dataset/"
 
 for file in os.listdir(path):
     extension = (file.split("."))[2]
@@ -57,10 +58,15 @@ for file in os.listdir(path):
                             print(f"---> (Maps - {model_name}) directory not found!\n6. Creating directory...")
                             os.makedirs(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
-                            print(f'7. Unzipping file into (Maps - {model_name} > temp)...')
-                            with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
-                                zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
-                            
+                            try:
+                                rar = rarfile.RarFile(f'{path}/{name}.rar')
+                                rar.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                                print(f'7. Unzipping .RAR file into (Maps - {model_name} > temp)...')
+                            except:
+                                with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
+                                    zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                                print(f'7. Unzipping .ZIP file into (Maps - {model_name} > temp)...')
+                                    
                             dst_dir = f'{output_path}{cat}/{sub_cat}'
                             
                             for jpgfile in glob.iglob(os.path.join(path, f"{name}.jpeg")):
@@ -151,9 +157,14 @@ for file in os.listdir(path):
                             print(f"---> Maps - {model_name} directory not found!\n4. Creating directory...")
                             os.makedirs(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
-                            print(f'6. Unzipping file into (Maps - {model_name} > temp)...')
-                            with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
-                                zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                            try:
+                                rar = rarfile.RarFile(f'{path}/{name}.rar')
+                                rar.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                                print(f'7. Unzipping .RAR file into (Maps - {model_name} > temp)...')
+                            except:
+                                with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
+                                    zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                                print(f'7. Unzipping .ZIP file into (Maps - {model_name} > temp)...')
 
                             dst_dir = f'{output_path}{cat}/{sub_cat}'
                             
@@ -249,9 +260,14 @@ for file in os.listdir(path):
                         print(f"---> Maps - {model_name} directory not found!\n4. Creating directory...")
                         os.makedirs(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                     
-                        print('6. Unzipping file into (Maps - {model_name} > temp)...')
-                        with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
-                            zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                        try:
+                            rar = rarfile.RarFile(f'{path}/{name}.rar')
+                            rar.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                            print(f'7. Unzipping .RAR file into (Maps - {model_name} > temp)...')
+                        except:
+                            with zipfile.ZipFile(f'{path}/{name}.zip', 'r') as zip_ref:
+                                zip_ref.extractall(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
+                            print(f'7. Unzipping .ZIP file into (Maps - {model_name} > temp)...')
 
                         dst_dir = f'{output_path}{cat}/{sub_cat}'
                             
