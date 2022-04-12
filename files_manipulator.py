@@ -21,7 +21,7 @@ try:
     mycursor = mydb.cursor()
 except:
     
-    print('Connection can not be estiblished with the database, please check xampp server to make sure it is running...\n\nCode Execution stoped. Please fix the issue and try again!')
+    print('Connection can not be estiblished with the database, please check xampp server to make sure it is running...')
     exit()
 ### Connect to database--- ###
                                     
@@ -119,7 +119,7 @@ for file in os.listdir(path):
                             for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                                 if maxfile:
                                     shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                            print(f"8. All .max files copied to ({sub_cat}).")
+                            print(f"8. All .max files copied to (sub_cat).")
                             
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
@@ -133,7 +133,7 @@ for file in os.listdir(path):
                                             shutil.rmtree(file_path)
                                 except Exception as e:
                                     print('Failed to delete %s. Reason: %s' % (file_path, e))
-                            
+                          
                             #Recursively find and return .jpg and .jpeg images from temp and copy to Maps - {model_name}
                             img_files = []
                             maps_dir = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
@@ -144,20 +144,21 @@ for file in os.listdir(path):
                                     img_files.append(os.path.join(root, image))
                             for img_file in img_files:
                                 shutil.copy(img_file, maps_dir)
-    
-                            
-                            for filename in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
-                                file_path = os.path.join(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp', filename)
-                                os.chmod(file_path, stat.S_IWRITE)
-                                try:
-                                    if os.path.isfile(file_path) or os.path.islink(file_path):
-                                        os.unlink(file_path)
-                                    elif os.path.isdir(file_path):
-                                        shutil.rmtree(file_path)
-                                except Exception as e:
-                                    print('Failed to delete %s. Reason: %s' % (file_path, e))
+                                
+                            #Recursively find each file in Maps - {model_name}/temp folders and nested folders and change each file permission then delete each one
+                            for root, dirnames, filenames in os.walk(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
+                                for file in filenames:
+                                    file_path = os.path.join(root, file)
+                                    os.chmod(file_path, stat.S_IWRITE)
+                                    try:
+                                        if os.path.isfile(file_path) or os.path.islink(file_path):
+                                            os.unlink(file_path)
+                                        elif os.path.isdir(file_path):
+                                            shutil.rmtree(file_path)
+                                    except Exception as e:
+                                        print('Failed to delete %s. Reason: %s' % (file_path, e))
                             shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
-                            
+
                             print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
                             print(f"11. Task completed!\n\n")
   
@@ -231,7 +232,7 @@ for file in os.listdir(path):
                             for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                                 if maxfile:
                                     shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                            print(f"8. All .max files copied to ({sub_cat}).")
+                            print(f"8. All .max files copied to (sub_cat).")
                             
                             folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                             for filename in os.listdir(folder):
@@ -256,17 +257,19 @@ for file in os.listdir(path):
                                     img_files.append(os.path.join(root, image))
                             for img_file in img_files:
                                 shutil.copy(img_file, maps_dir)
-      
-                            for filename in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
-                                file_path = os.path.join(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp', filename)
-                                os.chmod(file_path, stat.S_IWRITE)
-                                try:
-                                    if os.path.isfile(file_path) or os.path.islink(file_path):
-                                        os.unlink(file_path)
-                                    elif os.path.isdir(file_path):
-                                        shutil.rmtree(file_path)
-                                except Exception as e:
-                                    print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+                            #Recursively find each file in Maps - {model_name}/temp folders and nested folders and change each file permission then delete each one
+                            for root, dirnames, filenames in os.walk(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
+                                for file in filenames:
+                                    file_path = os.path.join(root, file)
+                                    os.chmod(file_path, stat.S_IWRITE)
+                                    try:
+                                        if os.path.isfile(file_path) or os.path.islink(file_path):
+                                            os.unlink(file_path)
+                                        elif os.path.isdir(file_path):
+                                            shutil.rmtree(file_path)
+                                    except Exception as e:
+                                        print('Failed to delete %s. Reason: %s' % (file_path, e))
                             shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                             print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
@@ -345,7 +348,7 @@ for file in os.listdir(path):
                         for maxfile in glob.iglob(os.path.join(temp_dir_max, f"*.max")):
                             if maxfile:
                                 shutil.copy(maxfile, f'{output_path}{cat}/{sub_cat}')
-                        print(f"8. All .max files copied to ({sub_cat}).")
+                        print(f"8. All .max files copied to (sub_cat).")
                             
                         folder = f'{output_path}{cat}/{sub_cat}/Maps - {model_name}'
                         for filename in os.listdir(folder):
@@ -370,17 +373,19 @@ for file in os.listdir(path):
                                 img_files.append(os.path.join(root, image))
                         for img_file in img_files:
                             shutil.copy(img_file, maps_dir)
-      
-                        for filename in os.listdir(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
-                            file_path = os.path.join(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp', filename)
-                            os.chmod(file_path, stat.S_IWRITE)
-                            try:
-                                if os.path.isfile(file_path) or os.path.islink(file_path):
-                                    os.unlink(file_path)
-                                elif os.path.isdir(file_path):
-                                    shutil.rmtree(file_path)
-                            except Exception as e:
-                                print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+                        #Recursively find each file in Maps - {model_name}/temp folders and nested folders and change each file permission then delete each one
+                        for root, dirnames, filenames in os.walk(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp'):
+                            for file in filenames:
+                                file_path = os.path.join(root, file)
+                                os.chmod(file_path, stat.S_IWRITE)
+                                try:
+                                    if os.path.isfile(file_path) or os.path.islink(file_path):
+                                        os.unlink(file_path)
+                                    elif os.path.isdir(file_path):
+                                        shutil.rmtree(file_path)
+                                except Exception as e:
+                                    print('Failed to delete %s. Reason: %s' % (file_path, e))
                         shutil.rmtree(f'{output_path}{cat}/{sub_cat}/Maps - {model_name}/temp')
                             
                         print(f"10. 'Temp' folder from (Maps - {model_name}) removed.")
